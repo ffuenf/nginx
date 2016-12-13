@@ -42,7 +42,7 @@ unless ::File.exist?("/usr/local/lib/libGeoIP.so.#{node['nginx']['geoip']['lib_v
       cd GeoIP-#{node['nginx']['geoip']['lib_version']}
       autoreconf -i
       which libtoolize && libtoolize -f
-      ./configure
+      ./configure --disable-dependency-tracking
       make && make install
     EOH
     environment('echo' => 'echo') if node['platform_family'] == 'rhel' && node['platform_version'].to_f < 6
