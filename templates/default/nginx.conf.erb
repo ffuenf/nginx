@@ -1,3 +1,6 @@
+<% if node['nginx']['ngx_pagespeed']['enabled'] == 'on' -%>
+load_module "modules/ngx_pagespeed.so"
+<% end -%>
 user <%= node['nginx']['user'] %><% if node['nginx']['user'] != node['nginx']['group'] %> <%= node['nginx']['group'] %><% end %>;
 worker_processes  <%= node['nginx']['worker_processes'] %>;
 <% if node['nginx']['daemon_disable'] -%>

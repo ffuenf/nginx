@@ -2,18 +2,9 @@
 # Cookbook Name:: nginx
 # Recipe:: pagespeed_module
 #
-default['nginx']['ngx_pagespeed']['version'] = '1.10.33.5-beta'
-default['nginx']['ngx_pagespeed']['url'] = "https://codeload.github.com/pagespeed/ngx_pagespeed/tar.gz/v#{node['nginx']['ngx_pagespeed']['version']}"
-default['nginx']['ngx_pagespeed']['checksum'] = 'fe6211f9f2c1aa7bad852a2ccdf85a1384bf331c12c742f163593a6ccc49091b'
-
-default['nginx']['ngx_pagespeed']['psol']['version'] = '1.10.33.5'
-default['nginx']['ngx_pagespeed']['psol']['url'] = "https://dl.google.com/dl/page-speed/psol/#{node['nginx']['ngx_pagespeed']['psol']['version']}.tar.gz"
-default['nginx']['ngx_pagespeed']['checksum'] = '5b2ede0f53281a1486b984937eb261c1a9a013b6b161c7663cc8e953e5b6e2ff'
-
 default['nginx']['ngx_pagespeed']['cache-url'] = '/var/ngx_pagespeed_cache'
 default['nginx']['ngx_pagespeed']['cache-size'] = '512M'
 default['nginx']['ngx_pagespeed']['enabled'] = 'on'
-default['nginx']['ngx_pagespeed']['canonicalize_javascript_libraries'] = false
 default['nginx']['ngx_pagespeed']['FileCachePath'] = node['nginx']['ngx_pagespeed']['cache-url']
 default['nginx']['ngx_pagespeed']['CacheFlushFilename'] = 'cache.flush'
 default['nginx']['ngx_pagespeed']['RewriteLevel'] = 'PassThrough'
