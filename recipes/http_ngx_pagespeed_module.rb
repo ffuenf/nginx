@@ -25,6 +25,18 @@ mount node['nginx']['ngx_pagespeed']['FileCachePath'] do
   supports [remount: true]
 end
 
+template "#{node['nginx']['dir']}/conf.d/ngx_pagespeed.conf" do
+  source 'modules/ngx_pagespeed.conf.erb'
+  owner 'root'
+  group node['root_group']
+  mode 00644
+  variables(
+    params: node['nginx']['ngx_pagespeed']
+  )
+  notifies :reload, 'service[nginx]', :delayed
+end
+
+
 directory node['nginx']['source']['prefix'] do
   recursive true
 end
