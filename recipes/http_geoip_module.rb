@@ -106,11 +106,11 @@ end
 cron 'run geoip update' do
   minute '0'
   hour '1'
-  day '*'
+  day '1-7'
   month '*'
   weekday '2'
   command <<-EOH
-    [ `date +\%d` -le 7 ] && wget "#{node['nginx']['geoip']['country_dat_url']}" -O "#{node['nginx']['geoip']['path']}/GeoIP.dat.gz" && mv #{node['nginx']['geoip']['path']}/GeoIP.dat #{node['nginx']['geoip']['path']}/GeoIP.dat.bak && gzip -d #{node['nginx']['geoip']['path']}/GeoIP.dat.gz > /dev/null 2>&1
+    wget -q "#{node['nginx']['geoip']['country_dat_url']}" -O "#{node['nginx']['geoip']['path']}/GeoIP.dat.gz" && mv #{node['nginx']['geoip']['path']}/GeoIP.dat #{node['nginx']['geoip']['path']}/GeoIP.dat.bak && gzip -d #{node['nginx']['geoip']['path']}/GeoIP.dat.gz
   EOH
 end
 
