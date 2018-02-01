@@ -40,12 +40,14 @@ end
 directory node['nginx']['source']['prefix'] do
   recursive true
 end
-bash 'extract_psol' do
-  cwd node['nginx']['source']['prefix']
-  code <<-EOH
-    bash <(curl -f -L -sS https://ngxpagespeed.com/install) -ym -b #{node['nginx']['source']['prefix']}
-  EOH
+cookbook_file '/tmp/install_pagespeed.sh' do
+  source 'install_pagespeed.sh'
+  mode 00777
+end
+execute 'install_pagespeed' do
+  command "/tmp/install_pagespeed.sh -ym -b #{node['nginx']['source']['prefix']}"
+  action :run
 end
 
 node.run_state['nginx_configure_flags'] =
-  node.run_state['nginx_configure_flags'] | ["--add-dynamic-module=#{node['nginx']['source']['prefix']}/ngx_pagespeed-latest-stable"]
+  node.run_state['nginx_configure_flags'] | ["--add-dynamic-module=#{node['nginx']['source']['prefix']}/incubator-pagespeed-ngx-latest-stable"]
