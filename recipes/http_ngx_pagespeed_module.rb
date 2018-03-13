@@ -48,6 +48,11 @@ execute 'install_pagespeed' do
   command "/tmp/install_pagespeed.sh -ym -b #{node['nginx']['source']['prefix']}"
   action :run
 end
+execute 'convert_pagespeed_libraries' do
+  command "#{node['nginx']['source']['prefix']}/incubator-pagespeed-ngx-latest-stable/scripts/pagespeed_libraries_generator.sh > #{node['nginx']['dir']}/pagespeed_libraries.conf"
+  action :run
+  only_if { node['nginx']['ngx_pagespeed']['canonicalize_javascript_libraries'] }
+end
 
 node.run_state['nginx_configure_flags'] =
   node.run_state['nginx_configure_flags'] | ["--add-dynamic-module=#{node['nginx']['source']['prefix']}/incubator-pagespeed-ngx-latest-stable"]

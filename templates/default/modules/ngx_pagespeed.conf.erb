@@ -39,6 +39,10 @@ pagespeed RetainComment "<%= @params['RetainComment'] %>";
 pagespeed DownstreamCachePurgeMethod <%= @params['DownstreamCachePurgeMethod'] %>;
 pagespeed DownstreamCacheRebeaconingKey <%= @params['DownstreamCacheRebeaconingKey'] %>;
 
+pagespeed LazyloadImagesAfterOnload <%= @params['LazyloadImagesAfterOnload'] %>;
+pagespeed CombineAcrossPaths <%= @params['CombineAcrossPaths'] %>;
+pagespeed RespectVary <%= @params['RespectVary'] %>;
+
 <% if @params['Disallow'] %>
 pagespeed Disallow <%= @params['Disallow'] %>;
 <% end %>
