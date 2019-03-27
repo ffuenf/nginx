@@ -19,9 +19,9 @@
 # limitations under the License.
 #
 
-default['nginx']['lua']['version']  = '0.10.11'
+default['nginx']['lua']['version']  = '0.10.14'
 default['nginx']['lua']['url']      = "https://github.com/chaoslawful/lua-nginx-module/archive/v#{node['nginx']['lua']['version']}.tar.gz"
-default['nginx']['lua']['checksum'] = 'c0fb91fcfd1c6e7dec34ca64826ef81ffebafdef6174d254467636f380566626'
+default['nginx']['lua']['checksum'] = '9e17e086d0ac74fb72326abb7f2f8274c080b4981cbf358b026307b4088e7148'
 
 default['nginx']['luajit']['version']  = '2.0.5'
 default['nginx']['luajit']['url']	     = "http://luajit.org/download/LuaJIT-#{node['nginx']['luajit']['version']}.tar.gz"
